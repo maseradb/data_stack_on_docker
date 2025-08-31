@@ -1,0 +1,21 @@
+services:
+  jupyterhub:
+    build: .
+    env_file:
+      - .env
+    environment:
+      - JUPYTERHUB_DB_USER=${JUPYTERHUB_DB_USER}
+      - JUPYTERHUB_DB_PASSWORD=${JUPYTERHUB_DB_PASSWORD}
+      - JUPYTERHUB_DB_NAME=${JUPYTERHUB_DB_NAME}
+    ports:
+      - "8888:8000"
+    volumes:
+    - ./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
+    - ./users:/home/jupyterhub
+    - ./jupyterhub_data:/srv/jupyterhub
+    restart: unless-stopped    
+    networks:
+      - data-processing
+networks:
+  data-processing:
+    external: true
