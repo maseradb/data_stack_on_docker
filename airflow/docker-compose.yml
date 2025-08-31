@@ -11,7 +11,6 @@ x-airflow-common:
   build: .
   environment:
     &airflow-common-env
-    AIRFLOW__CORE__AUTH_MANAGER: airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
     AIRFLOW__CORE__FERNET_KEY: ''
@@ -38,10 +37,10 @@ x-airflow-common:
       - data-processing
 
 services:      
-  airflow-api-server:
-    container_name: maseradb-airflow-api-server
+  airflow-webserver:
+    container_name: maseradb-airflow-webserver
     <<: *airflow-common
-    command: api-server
+    command: webserver
     ports:
       - "8080:8080"
     healthcheck:
@@ -69,24 +68,6 @@ services:
     depends_on:
       airflow-init:
         condition: service_completed_successfully  
-
-  airflow-dag-processor:
-    container_name: maseradb-airflow-dag-processor
-    <<: *airflow-common
-    command: dag-processor
-    healthcheck:
-      test: ["CMD-SHELL", 'airflow jobs check --job-type DagProcessorJob --hostname "$${HOSTNAME}"']
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
-    restart: always
-    depends_on:
-      postgres:
-        condition: service_healthy
-      airflow-init:
-        condition: service_completed_successfully
-
 
   airflow-init:
     <<: *airflow-common

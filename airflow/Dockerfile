@@ -1,4 +1,4 @@
-FROM apache/airflow:3.0.6-python3.11
+FROM apache/airflow:2.11.0-python3.11
 USER root
 
 RUN apt-get update \
@@ -8,8 +8,6 @@ RUN apt-get update \
   && apt-get autoremove -yqq --purge \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
-
-RUN pip install apache-airflow-providers-fab
 
 RUN locale-gen pt_BR.UTF-8
 
