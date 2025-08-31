@@ -9,6 +9,8 @@ RUN apt-get update \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
+RUN pip install apache-airflow-providers-fab
+
 RUN locale-gen pt_BR.UTF-8
 
 USER airflow
