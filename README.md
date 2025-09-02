@@ -1,8 +1,9 @@
 docker compose up -d --build
 
+
 # Data Stack on Docker
 
-A robust, production-ready data processing environment using Docker Compose. This stack integrates Apache Airflow, Apache Spark, PostgreSQL, and JupyterHub, enabling scalable ETL, analytics, and collaborative data science workflows.
+A compact, easy-to-deploy data processing environment using Docker Compose. This stack is ideal for small production deployments, testing, and development. It integrates Apache Airflow, Apache Spark, PostgreSQL, and JupyterHub, enabling scalable ETL, analytics, and collaborative data science workflows in a lightweight setup.
 
 ## Features
 
