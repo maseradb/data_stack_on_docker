@@ -13,7 +13,6 @@ services:
       - ./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
       - ./users:/home/jupyterhub
       - ./jupyterhub_data:/srv/jupyterhub
-    user: "1000:1000"
     restart: unless-stopped    
     networks:
       - data-processing
