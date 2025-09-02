@@ -1,0 +1,4 @@
+*/.env
+postgres/.env
+jupyterhub/.env
+jupyterhub/jupyterhub_data/jupyterhub_cookie_secret

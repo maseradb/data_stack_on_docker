@@ -15,3 +15,7 @@ pyspark==3.5.6
 oracledb
 psycopg2-binary
 sqlalchemy
+python-dotenv
+jupyterlab
+jupyterhub-nativeauthenticator
+jupyterlab-git

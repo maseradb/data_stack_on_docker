@@ -1,4 +1,4 @@
-FROM jupyterhub/jupyterhub:latest
+FROM jupyterhub/jupyterhub:5.3.0
 
 RUN apt-get update && apt-get install -y \
     python3-pip \
@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     bzip2 \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Miniconda (Python 3.8)
+# Install Miniconda (Python 3.11)
 ENV CONDA_DIR=/opt/conda
 ENV PATH=$CONDA_DIR/bin:$PATH
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py311_24.1.2-0-Linux-x86_64.sh -O /tmp/miniconda.sh \
@@ -17,10 +17,6 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py311_24.1.2-0-L
 
 # Ensure conda is initialized
 RUN $CONDA_DIR/bin/conda init bash
-
-RUN pip install jupyterlab \
-    && pip install jupyterhub-nativeauthenticator \
-    && pip install jupyterlab-git
 
 RUN mkdir -p /srv/jupyterhub/work && chmod 777 /srv/jupyterhub/work
 
