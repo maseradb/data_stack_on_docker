@@ -93,23 +93,19 @@ docker compose up -d --build
 
 ---
 
-## Example: Running a PySpark Job
 
-You can run distributed jobs using Spark from the `spark/jobs` directory. For example, to estimate Pi:
+## Example: Testing Spark Connection from Jupyter
 
-```bash
-cd spark
-spark-submit --master spark://localhost:7077 jobs/estimate_pi.py
-```
+To test the connection from JupyterHub to your Spark cluster, open the `PySparkTest.ipynb` notebook located in the `jupyterhub` folder. This notebook demonstrates how to create a Spark session and run distributed computations interactively.
 
-Or use the provided Jupyter notebook for interactive Spark sessions.
+> **Tip:** Using the notebook is the recommended way to validate your Spark setup and experiment with PySpark code in a collaborative environment.
 
 ---
 
 ## Tips & Troubleshooting
 
 - Ensure all `.env` files are properly configured before starting services.
-- If you encounter file permission issues (especially with JupyterHub secrets), ensure the correct user and permissions are set, or run the stack from a WSL-native path.
+- If you encounter file permission issues (especially with JupyterHub secrets), ensure the correct user and permissions are set.
 - Scale Spark workers as needed with `docker compose up -d --scale worker=N`.
 
 ---
